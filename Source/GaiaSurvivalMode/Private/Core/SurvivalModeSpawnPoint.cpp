@@ -15,7 +15,7 @@ ASurvivalModeSpawnPoint::ASurvivalModeSpawnPoint()
 	Capsule->SetCapsuleRadius(44.f);
 	Arrow = CreateDefaultSubobject<UArrowComponent>(TEXT("SpawnArrow"));
 	Arrow->SetupAttachment(Capsule);
-	Arrow->SetRelativeLocation(FVector(0.f,0.f,44.f));
+	Arrow->SetRelativeLocation(FVector(0.f));
 }
 
 // Called when the game starts or when spawned

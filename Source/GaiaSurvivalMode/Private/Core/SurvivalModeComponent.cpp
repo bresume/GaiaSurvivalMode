@@ -7,6 +7,7 @@
 
 #include "Core/GaiaSurvivalFunctions.h"
 #include "Core/SurvivalSpawnPointLink.h"
+#include "Core/SurvivalModePlayer.h"
 
 // Sets default values for this component's properties
 USurvivalModeComponent::USurvivalModeComponent()
@@ -61,6 +62,10 @@ void USurvivalModeComponent::StartRound_Implementation()
 void USurvivalModeComponent::StartRound_Impl()
 {
 	//If no spawner is found, then retry our spawns.
+	for(auto& player : GetAllPlayers())
+	{
+		ISurvivalModePlayer::Execute_RoundStarted(player,this, SurvivalDetails.IsBossRound());
+	}
 	HandleSpawnActor();
 	Multicast_Sound(SurvivalDetails.RoundStartSound);
 	RoundStart.Broadcast(this,SurvivalDetails.IsBossRound());
@@ -79,6 +84,10 @@ void USurvivalModeComponent::EndRound_Impl()
 		//If we have ended the game (i.e. reaching the max round) then call the function.
 		Server_EndGame(SurvivalDetails.EndGameText);
 	}
+	for(auto& player : GetAllPlayers())
+	{
+		ISurvivalModePlayer::Execute_RoundEnded(player,this, SurvivalDetails.IsBossRound());
+	}
 	//Otherwise, play the end round sound and start the next round.
 	Multicast_Sound(SurvivalDetails.RoundEndSound);
 	RoundEnd.Broadcast(this,SurvivalDetails.IsBossRound());
@@ -95,6 +104,12 @@ void USurvivalModeComponent::StartGame_Impl()
 {
 	//Set the timer to start the first round, "complete" the round to go from round 0 to round 1 and find the spawners for round 1.
 	GetWorld()->GetTimerManager().SetTimer(RoundHandle,this,&USurvivalModeComponent::Server_StartRound,SurvivalDetails.TimeBetweenRounds,false);
+	for(auto& player : GetAllPlayers())
+	{
+		ISurvivalModePlayer::Execute_GameStarted(player,this);
+		ISurvivalModePlayer::Execute_ShowUI(player,this,SurvivalDetails.Widget);
+	}
+	bGameActive = true;
 	SurvivalDetails.CompleteRound();
 	Spawners = FindSpawnersForRound();
 	GameStart.Broadcast(this);
@@ -108,6 +123,12 @@ void USurvivalModeComponent::EndGame_Implementation(const FText& Reason)
 
 void USurvivalModeComponent::EndGame_Impl(const FText& Reason)
 {
+	for(auto& player : GetAllPlayers())
+	{
+		ISurvivalModePlayer::Execute_GameEnded(player,this, Reason);
+		ISurvivalModePlayer::Execute_HideUI(player,this);
+	}
+	bGameActive = false;
 	GameEnd.Broadcast(this,Reason);
 	Multicast_Sound(SurvivalDetails.GameEndSound);
 }
@@ -283,4 +304,11 @@ TArray<FSurvivalModeSpawner> USurvivalModeComponent::FindSpawnersForRound_Implem
 		}
 	}
 	return spawners;
+}
+
+TArray<AActor*> USurvivalModeComponent::GetAllPlayers_Implementation()
+{
+	TArray<AActor*> players;
+	UGameplayStatics::GetAllActorsWithInterface(this,USurvivalModePlayer::StaticClass(),players);
+	return players;
 }

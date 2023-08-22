@@ -222,10 +222,22 @@ public:
 		FTimerHandle GetSpawnHandle(){return SpawnHandle;}
 
 	/**
+	 * Return the value.
+	*/
+	UFUNCTION(BlueprintPure,Category = "Survival|Getters")
+		bool IsGameActive(){return bGameActive;}
+
+	/**
 	 * Find the spawners for the current round.
 	*/
 	UFUNCTION(BlueprintPure,BlueprintNativeEvent,Category = "Survival")
 		TArray<FSurvivalModeSpawner> FindSpawnersForRound();
+
+	/**
+	 * Find the spawners for the current round.
+	*/
+	UFUNCTION(BlueprintPure,BlueprintNativeEvent,Category = "Survival")
+		TArray<AActor*> GetAllPlayers();
 
 private:
 
@@ -246,5 +258,8 @@ private:
 
 	UPROPERTY(Replicated)
 		FSurvivalModeDetails SurvivalDetails;	
+
+	UPROPERTY(Replicated)
+		bool bGameActive;
 		
 };

@@ -324,11 +324,25 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 	Parms.Actor=Actor;
 	OnEnemyDestroyed.ProcessMulticastDelegate<UObject>(&Parms);
 }
+	DEFINE_FUNCTION(USurvivalModeComponent::execGetAllPlayers)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(TArray<AActor*>*)Z_Param__Result=P_THIS->GetAllPlayers_Implementation();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(USurvivalModeComponent::execFindSpawnersForRound)
 	{
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		*(TArray<FSurvivalModeSpawner>*)Z_Param__Result=P_THIS->FindSpawnersForRound_Implementation();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(USurvivalModeComponent::execIsGameActive)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(bool*)Z_Param__Result=P_THIS->IsGameActive();
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(USurvivalModeComponent::execGetSpawnHandle)
@@ -520,6 +534,10 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 	{
 		TArray<FSurvivalModeSpawner> ReturnValue;
 	};
+	struct SurvivalModeComponent_eventGetAllPlayers_Parms
+	{
+		TArray<AActor*> ReturnValue;
+	};
 	struct SurvivalModeComponent_eventMulticast_Sound_Parms
 	{
 		TSoftObjectPtr<USoundBase> Sound;
@@ -564,6 +582,13 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 	{
 		SurvivalModeComponent_eventFindSpawnersForRound_Parms Parms;
 		ProcessEvent(FindFunctionChecked(NAME_USurvivalModeComponent_FindSpawnersForRound),&Parms);
+		return Parms.ReturnValue;
+	}
+	static FName NAME_USurvivalModeComponent_GetAllPlayers = FName(TEXT("GetAllPlayers"));
+	TArray<AActor*> USurvivalModeComponent::GetAllPlayers()
+	{
+		SurvivalModeComponent_eventGetAllPlayers_Parms Parms;
+		ProcessEvent(FindFunctionChecked(NAME_USurvivalModeComponent_GetAllPlayers),&Parms);
 		return Parms.ReturnValue;
 	}
 	static FName NAME_USurvivalModeComponent_HandleSpawnActor = FName(TEXT("HandleSpawnActor"));
@@ -639,6 +664,7 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 			{ "EndRound", &USurvivalModeComponent::execEndRound },
 			{ "EnemyDestroyed", &USurvivalModeComponent::execEnemyDestroyed },
 			{ "FindSpawnersForRound", &USurvivalModeComponent::execFindSpawnersForRound },
+			{ "GetAllPlayers", &USurvivalModeComponent::execGetAllPlayers },
 			{ "GetCurrentSpawner", &USurvivalModeComponent::execGetCurrentSpawner },
 			{ "GetRoundHandle", &USurvivalModeComponent::execGetRoundHandle },
 			{ "GetSpawnedActors", &USurvivalModeComponent::execGetSpawnedActors },
@@ -646,6 +672,7 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 			{ "GetSpawnHandle", &USurvivalModeComponent::execGetSpawnHandle },
 			{ "GetSurvivalDetails", &USurvivalModeComponent::execGetSurvivalDetails },
 			{ "HandleSpawnActor", &USurvivalModeComponent::execHandleSpawnActor },
+			{ "IsGameActive", &USurvivalModeComponent::execIsGameActive },
 			{ "Multicast_Sound", &USurvivalModeComponent::execMulticast_Sound },
 			{ "Server_EndGame", &USurvivalModeComponent::execServer_EndGame },
 			{ "Server_EndRound", &USurvivalModeComponent::execServer_EndRound },
@@ -785,6 +812,40 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USurvivalModeComponent_FindSpawnersForRound_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics
+	{
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue_Inner;
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::NewProp_ReturnValue_Inner = { "ReturnValue", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, 0, Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(SurvivalModeComponent_eventGetAllPlayers_Parms, ReturnValue), EArrayPropertyFlags::None, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::NewProp_ReturnValue_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Survival" },
+		{ "Comment", "/**\n\x09 * Find the spawners for the current round.\n\x09*/" },
+		{ "ModuleRelativePath", "Public/Core/SurvivalModeComponent.h" },
+		{ "ToolTip", "Find the spawners for the current round." },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USurvivalModeComponent, nullptr, "GetAllPlayers", nullptr, nullptr, sizeof(SurvivalModeComponent_eventGetAllPlayers_Parms), Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x1C020C00, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1026,6 +1087,46 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USurvivalModeComponent_HandleSpawnActor_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics
+	{
+		struct SurvivalModeComponent_eventIsGameActive_Parms
+		{
+			bool ReturnValue;
+		};
+		static void NewProp_ReturnValue_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	void Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+	{
+		((SurvivalModeComponent_eventIsGameActive_Parms*)Obj)->ReturnValue = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(SurvivalModeComponent_eventIsGameActive_Parms), &Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::Function_MetaDataParams[] = {
+		{ "Category", "Survival|Getters" },
+		{ "Comment", "/**\n\x09 * Return the value.\n\x09*/" },
+		{ "ModuleRelativePath", "Public/Core/SurvivalModeComponent.h" },
+		{ "ToolTip", "Return the value." },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_USurvivalModeComponent, nullptr, "IsGameActive", nullptr, nullptr, sizeof(Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::SurvivalModeComponent_eventIsGameActive_Parms), Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_USurvivalModeComponent_IsGameActive()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_USurvivalModeComponent_IsGameActive_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1391,6 +1492,11 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_SurvivalDetails_MetaData[];
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_SurvivalDetails;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bGameActive_MetaData[];
+#endif
+		static void NewProp_bGameActive_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bGameActive;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -1404,6 +1510,7 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 		{ &Z_Construct_UFunction_USurvivalModeComponent_EndRound, "EndRound" }, // 795309814
 		{ &Z_Construct_UFunction_USurvivalModeComponent_EnemyDestroyed, "EnemyDestroyed" }, // 1927320776
 		{ &Z_Construct_UFunction_USurvivalModeComponent_FindSpawnersForRound, "FindSpawnersForRound" }, // 1315723683
+		{ &Z_Construct_UFunction_USurvivalModeComponent_GetAllPlayers, "GetAllPlayers" }, // 3481842722
 		{ &Z_Construct_UFunction_USurvivalModeComponent_GetCurrentSpawner, "GetCurrentSpawner" }, // 9765813
 		{ &Z_Construct_UFunction_USurvivalModeComponent_GetRoundHandle, "GetRoundHandle" }, // 2053209852
 		{ &Z_Construct_UFunction_USurvivalModeComponent_GetSpawnedActors, "GetSpawnedActors" }, // 2839739843
@@ -1411,6 +1518,7 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 		{ &Z_Construct_UFunction_USurvivalModeComponent_GetSpawnHandle, "GetSpawnHandle" }, // 397272910
 		{ &Z_Construct_UFunction_USurvivalModeComponent_GetSurvivalDetails, "GetSurvivalDetails" }, // 2393006460
 		{ &Z_Construct_UFunction_USurvivalModeComponent_HandleSpawnActor, "HandleSpawnActor" }, // 4029087339
+		{ &Z_Construct_UFunction_USurvivalModeComponent_IsGameActive, "IsGameActive" }, // 3388363820
 		{ &Z_Construct_UFunction_USurvivalModeComponent_Multicast_Sound, "Multicast_Sound" }, // 11777468
 		{ &Z_Construct_UFunction_USurvivalModeComponent_Server_EndGame, "Server_EndGame" }, // 1185419206
 		{ &Z_Construct_UFunction_USurvivalModeComponent_Server_EndRound, "Server_EndRound" }, // 2267151994
@@ -1535,6 +1643,16 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_SurvivalDetails = { "SurvivalDetails", nullptr, (EPropertyFlags)0x0040000000000020, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(USurvivalModeComponent, SurvivalDetails), Z_Construct_UScriptStruct_FSurvivalModeDetails, METADATA_PARAMS(Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_SurvivalDetails_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_SurvivalDetails_MetaData)) }; // 2451853430
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_bGameActive_MetaData[] = {
+		{ "ModuleRelativePath", "Public/Core/SurvivalModeComponent.h" },
+	};
+#endif
+	void Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_bGameActive_SetBit(void* Obj)
+	{
+		((USurvivalModeComponent*)Obj)->bGameActive = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_bGameActive = { "bGameActive", nullptr, (EPropertyFlags)0x0040000000000020, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(USurvivalModeComponent), &Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_bGameActive_SetBit, METADATA_PARAMS(Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_bGameActive_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_bGameActive_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_USurvivalModeComponent_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_RoundStart,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_RoundEnd,
@@ -1551,6 +1669,7 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_RoundHandle,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_SpawnHandle,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_SurvivalDetails,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_USurvivalModeComponent_Statics::NewProp_bGameActive,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_USurvivalModeComponent_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<USurvivalModeComponent>::IsAbstract,
@@ -1591,6 +1710,7 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 		static const FName Name_RoundHandle(TEXT("RoundHandle"));
 		static const FName Name_SpawnHandle(TEXT("SpawnHandle"));
 		static const FName Name_SurvivalDetails(TEXT("SurvivalDetails"));
+		static const FName Name_bGameActive(TEXT("bGameActive"));
 
 		const bool bIsValid = true
 			&& Name_SpawnedActors == ClassReps[(int32)ENetFields_Private::SpawnedActors].Property->GetFName()
@@ -1598,7 +1718,8 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 			&& Name_CurrentSpawner == ClassReps[(int32)ENetFields_Private::CurrentSpawner].Property->GetFName()
 			&& Name_RoundHandle == ClassReps[(int32)ENetFields_Private::RoundHandle].Property->GetFName()
 			&& Name_SpawnHandle == ClassReps[(int32)ENetFields_Private::SpawnHandle].Property->GetFName()
-			&& Name_SurvivalDetails == ClassReps[(int32)ENetFields_Private::SurvivalDetails].Property->GetFName();
+			&& Name_SurvivalDetails == ClassReps[(int32)ENetFields_Private::SurvivalDetails].Property->GetFName()
+			&& Name_bGameActive == ClassReps[(int32)ENetFields_Private::bGameActive].Property->GetFName();
 
 		checkf(bIsValid, TEXT("UHT Generated Rep Indices do not match runtime populated Rep Indices for properties in USurvivalModeComponent"));
 	}
@@ -1609,9 +1730,9 @@ void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScriptDelegate& OnEnemyDe
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_SurvivalModeComponent_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_USurvivalModeComponent, USurvivalModeComponent::StaticClass, TEXT("USurvivalModeComponent"), &Z_Registration_Info_UClass_USurvivalModeComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USurvivalModeComponent), 1834879356U) },
+		{ Z_Construct_UClass_USurvivalModeComponent, USurvivalModeComponent::StaticClass, TEXT("USurvivalModeComponent"), &Z_Registration_Info_UClass_USurvivalModeComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(USurvivalModeComponent), 35863827U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_SurvivalModeComponent_h_414775599(TEXT("/Script/GaiaSurvivalMode"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_SurvivalModeComponent_h_1386801612(TEXT("/Script/GaiaSurvivalMode"),
 		Z_CompiledInDeferFile_FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_SurvivalModeComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_SurvivalModeComponent_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

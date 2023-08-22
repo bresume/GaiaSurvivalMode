@@ -43,6 +43,7 @@ GAIASURVIVALMODE_API void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScri
 
 #define FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_SurvivalModeComponent_h_28_SPARSE_DATA
 #define FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_SurvivalModeComponent_h_28_RPC_WRAPPERS \
+	virtual TArray<AActor*> GetAllPlayers_Implementation(); \
 	virtual TArray<FSurvivalModeSpawner> FindSpawnersForRound_Implementation(); \
 	virtual void Multicast_Sound_Implementation(TSoftObjectPtr<USoundBase> const& Sound); \
 	virtual bool Server_EndGame_Validate(FText const& ); \
@@ -65,7 +66,9 @@ GAIASURVIVALMODE_API void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScri
 	virtual void EndRound_Implementation(); \
 	virtual void StartRound_Implementation(); \
  \
+	DECLARE_FUNCTION(execGetAllPlayers); \
 	DECLARE_FUNCTION(execFindSpawnersForRound); \
+	DECLARE_FUNCTION(execIsGameActive); \
 	DECLARE_FUNCTION(execGetSpawnHandle); \
 	DECLARE_FUNCTION(execGetRoundHandle); \
 	DECLARE_FUNCTION(execGetSurvivalDetails); \
@@ -89,6 +92,7 @@ GAIASURVIVALMODE_API void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScri
 
 
 #define FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_SurvivalModeComponent_h_28_RPC_WRAPPERS_NO_PURE_DECLS \
+	virtual TArray<AActor*> GetAllPlayers_Implementation(); \
 	virtual TArray<FSurvivalModeSpawner> FindSpawnersForRound_Implementation(); \
 	virtual void Multicast_Sound_Implementation(TSoftObjectPtr<USoundBase> const& Sound); \
 	virtual void Server_EndGame_Implementation(FText const& Reason); \
@@ -105,7 +109,9 @@ GAIASURVIVALMODE_API void FOnEnemyDestroyed_DelegateWrapper(const FMulticastScri
 	virtual void EndRound_Implementation(); \
 	virtual void StartRound_Implementation(); \
  \
+	DECLARE_FUNCTION(execGetAllPlayers); \
 	DECLARE_FUNCTION(execFindSpawnersForRound); \
+	DECLARE_FUNCTION(execIsGameActive); \
 	DECLARE_FUNCTION(execGetSpawnHandle); \
 	DECLARE_FUNCTION(execGetRoundHandle); \
 	DECLARE_FUNCTION(execGetSurvivalDetails); \
@@ -146,7 +152,8 @@ public: \
 		RoundHandle, \
 		SpawnHandle, \
 		SurvivalDetails, \
-		NETFIELD_REP_END=SurvivalDetails	}; \
+		bGameActive, \
+		NETFIELD_REP_END=bGameActive	}; \
 	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 
@@ -166,7 +173,8 @@ public: \
 		RoundHandle, \
 		SpawnHandle, \
 		SurvivalDetails, \
-		NETFIELD_REP_END=SurvivalDetails	}; \
+		bGameActive, \
+		NETFIELD_REP_END=bGameActive	}; \
 	NO_API virtual void ValidateGeneratedRepEnums(const TArray<struct FRepRecord>& ClassReps) const override;
 
 
