@@ -3976,7 +3976,7 @@
   ../Intermediate/Build/Mac/UnrealEditor/Inc/Engine/UHT/GameplayStaticsTypes.generated.h \
   Runtime/Engine/Classes/Particles/WorldPSCPool.h \
   ../Intermediate/Build/Mac/UnrealEditor/Inc/Engine/UHT/GameplayStatics.generated.h \
-  Runtime/Core/Public/Algo/Sort.h \
+  Runtime/Core/Public/Algo/RandomShuffle.h \
   /Users/bhramamobile/wkspaces/dungeon_destroyers_ue5/Plugins/GaiaSurvivalMode/Source/GaiaSurvivalMode/Private/Core/SurvivalModeComponent.cpp \
   Runtime/Engine/Public/Net/UnrealNetwork.h \
   Runtime/Engine/Public/EngineLogs.h \

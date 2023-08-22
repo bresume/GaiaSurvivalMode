@@ -25,7 +25,7 @@ public:
 	 * Determines if the spawn point allows spawn. 
 	*/
 	UFUNCTION(BlueprintPure,Category = "SurvivalMode", meta = (CompactNodeTitle = "ClassAllowed"))
-		bool IsClassAllowedForSpawner(FSurvivalSpawnPoint A, UClass* Class);
+		static bool IsClassAllowedForSpawner(FSurvivalSpawnPoint A, UClass* Class);
 
 	/**
 	 * Get the spawners that implement ISurvivalSpawnPointLink and have the desired tags (typically gathered from FSurvivalSpawnPoint).
@@ -33,20 +33,20 @@ public:
 	 * If Tags.Num<=0 then we grab all of the spawners.
 	*/
 	UFUNCTION(BlueprintPure,Category = "SurvivalMode", meta = (WorldContext = "WorldContextObject"))
-		bool GetSpawnersWithTags(UObject* WorldContextObject,TArray<FName> Tags, TArray<AActor*>& OutActors);
+		static bool GetSpawnersWithTags(UObject* WorldContextObject,TArray<FName> Tags, TArray<AActor*>& OutActors);
 
 	/**
 	 * Find a spawner from the list of spawners.
 	 * Remember to make sure the spawner implements ISurvivalSpawnPointLink.
 	*/
 	UFUNCTION(BlueprintPure,Category = "SurvivalMode", meta = (WorldContext = "WorldContextObject"))
-		bool FindNextAvailableSpawner(TArray<AActor*> Actors, AActor*& Value);
+		static bool FindNextAvailableSpawner(TArray<AActor*> Actors, AActor*& Value);
 
 	/**
 	 * Get the current round from the details.
 	*/
 	UFUNCTION(BlueprintPure,Category = "SurvivalMode", meta = (CompactNodeTitle = "Round"))
-		int32 GetCurrentRound(FSurvivalModeDetails A);
+		static int32 GetCurrentRound(FSurvivalModeDetails A);
 
 	/**
 	 * Complete the round in the details.
@@ -57,24 +57,24 @@ public:
 	 * 	If you do not do this, you will duplicate the function.
 	*/
 	UFUNCTION(BlueprintPure,Category = "SurvivalMode", meta = (WorldContext = "WorldContextObject"))
-		bool CompleteRound(FSurvivalModeDetails A);
+		static bool CompleteRound(FSurvivalModeDetails A);
 
 	/**
 	 * Determines if the spawner ignores the round.
 	*/
 	UFUNCTION(BlueprintPure,Category = "SurvivalMode", meta = (WorldContext = "WorldContextObject"))
-		bool IgnoreRound(FSurvivalModeSpawner A, int32 CurrentRound);
+		static bool IgnoreRound(FSurvivalModeSpawner A, int32 CurrentRound);
 
 	/**
 	 * Determines if the spawner will use the round.
 	*/
 	UFUNCTION(BlueprintPure,Category = "SurvivalMode", meta = (WorldContext = "WorldContextObject"))
-		bool UseRound(FSurvivalModeSpawner A, int32 CurrentRound);
+		static bool UseRound(FSurvivalModeSpawner A, int32 CurrentRound);
 
 	/**
 	 * Determines if the spawner spawns during a boss round.
 	*/
 	UFUNCTION(BlueprintPure,Category = "SurvivalMode", meta = (WorldContext = "WorldContextObject"))		
-		bool IsBossRound(FSurvivalModeDetails A);
+		static bool IsBossRound(FSurvivalModeDetails A);
 
 };

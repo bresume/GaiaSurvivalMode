@@ -3,7 +3,7 @@
 
 #include "Core/GaiaSurvivalFunctions.h"
 #include "Kismet/GameplayStatics.h"
-#include "Algo/Sort.h"
+#include "Algo/RandomShuffle.h"
 
 #include "Core/SurvivalSpawnPointLink.h"
 
@@ -42,7 +42,7 @@ bool UGaiaSurvivalFunctions::GetSpawnersWithTags(UObject* WorldContextObject, TA
 bool UGaiaSurvivalFunctions::FindNextAvailableSpawner(TArray<AActor*> Actors, AActor*& Value)
 {
     TArray<AActor*> arr = Actors;
-    Algo::Shuffle(arr);
+    Algo::RandomShuffle(arr);
     for(auto& actor : arr)
     {
         if(actor->GetClass()->ImplementsInterface(USurvivalSpawnPointLink::StaticClass()))

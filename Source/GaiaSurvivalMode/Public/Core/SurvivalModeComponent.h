@@ -156,34 +156,34 @@ public:
 	*/
 	UFUNCTION(Server,Reliable,WithValidation,BlueprintCallable,Category = "Survival")
 		void Server_StartRound();
-	void Server_StartRound_Validate();
+	bool Server_StartRound_Validate();
 	
 	/**
 	 * End the round.
 	*/
 	UFUNCTION(Server,Reliable,WithValidation,BlueprintCallable,Category = "Survival")
 		void Server_EndRound();
-	void Server_EndRound_Validate();
+	bool Server_EndRound_Validate();
 
 	/**
 	 * Start the game.
 	*/
 	UFUNCTION(Server,Reliable,WithValidation,BlueprintCallable,Category = "Survival")
 		void Server_StartGame();
-	void Server_StartGame_Validate();
+	bool Server_StartGame_Validate();
 	
 	/**
 	 * End the game.
 	*/
 	UFUNCTION(Server,Reliable,WithValidation,BlueprintCallable,Category = "Survival")
 		void Server_EndGame(const FText& Reason);
-	void Server_EndGame_Validate(const FText& Reason);
+	bool Server_EndGame_Validate(const FText& Reason);
 
 	/**
 	 * Multicast our sound.
 	*/
 	UFUNCTION(NetMulticast,Reliable,BlueprintCallable,Category = "Survival")
-		void Multicast_Sound(TSoftObjectPtr<USoundBase> Sound);
+		void Multicast_Sound(const TSoftObjectPtr<USoundBase>& Sound);
 
 	/**
 	 * Return the value.
@@ -224,7 +224,7 @@ public:
 	/**
 	 * Find the spawners for the current round.
 	*/
-	UFUNCTON(BlueprintPure,BlueprintNativeEvent,Category = "Survival")
+	UFUNCTION(BlueprintPure,BlueprintNativeEvent,Category = "Survival")
 		TArray<FSurvivalModeSpawner> FindSpawnersForRound();
 
 private:

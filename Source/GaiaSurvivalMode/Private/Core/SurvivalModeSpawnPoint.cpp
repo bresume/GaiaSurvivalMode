@@ -147,13 +147,13 @@ void ASurvivalModeSpawnPoint::HandleSpawnActor_Impl(TSubclassOf<AActor> Class,
 		CurrentSpawnedActor->SetActorTransform(SpawnPoint.bAllowTransformOverride ? Transform : Arrow->GetComponentTransform());
 		if(SpawnPoint.CooldownTime > 0)
 		{
-			GetWorld()->GetTimerManager().SetTimer(ResetHandle,this,&USurvivalModeSpawnPoint::HandleResetCooldown,SpawnPoint.CooldownTime,false);
+			GetWorld()->GetTimerManager().SetTimer(ResetHandle,this,&ASurvivalModeSpawnPoint::HandleResetCooldown,SpawnPoint.CooldownTime,false);
 			bIsBusy = true;
 		}
 	}
 }
 
-void ASurvivalModeSpawnPoint::HandleResetCooldown()
+void ASurvivalModeSpawnPoint::HandleResetCooldown_Implementation()
 {
 	HandleResetCooldown_Impl();
 }

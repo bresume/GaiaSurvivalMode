@@ -24,9 +24,9 @@ void USurvivalModeComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	//Set the details from the table row if valid, or from the default settings.
-	if(DetailsRow.DataTable && Details.RowName != NAME_None)
+	if(DetailsRow.DataTable && DetailsRow.RowName != NAME_None)
 	{
-		Server_SetSurvivalDetails()
+		Server_SetSurvivalDetails(*DetailsRow.DataTable->FindRow<FSurvivalModeDetails>(DetailsRow.RowName,""));
 	}
 	else
 	{
@@ -53,7 +53,7 @@ void USurvivalModeComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty
 	DOREPLIFETIME(USurvivalModeComponent, SurvivalDetails);
 }
 
-void USurvivalModeComponent::StartRound()
+void USurvivalModeComponent::StartRound_Implementation()
 {
 	StartRound_Impl();
 }
@@ -66,7 +66,7 @@ void USurvivalModeComponent::StartRound_Impl()
 	RoundStart.Broadcast(this,SurvivalDetails.IsBossRound());
 }
 
-void USurvivalModeComponent::EndRound()
+void USurvivalModeComponent::EndRound_Implementation()
 {
 	EndRound_Impl();
 }
@@ -86,7 +86,7 @@ void USurvivalModeComponent::EndRound_Impl()
 	GetWorld()->GetTimerManager().SetTimer(RoundHandle,this,&USurvivalModeComponent::Server_StartRound,SurvivalDetails.TimeBetweenRounds,false);
 }
 
-void USurvivalModeComponent::StartGame()
+void USurvivalModeComponent::StartGame_Implementation()
 {
 	StartGame_Impl();
 }
@@ -97,24 +97,24 @@ void USurvivalModeComponent::StartGame_Impl()
 	GetWorld()->GetTimerManager().SetTimer(RoundHandle,this,&USurvivalModeComponent::Server_StartRound,SurvivalDetails.TimeBetweenRounds,false);
 	SurvivalDetails.CompleteRound();
 	Spawners = FindSpawnersForRound();
-	GameStarted.Broadcast(this);
+	GameStart.Broadcast(this);
 	Multicast_Sound(SurvivalDetails.GameStartSound);
 }
 
-void USurvivalModeComponent::EndGame(const FText& Reason)
+void USurvivalModeComponent::EndGame_Implementation(const FText& Reason)
 {
-	EndGame_Impl();
+	EndGame_Impl(Reason);
 }
 
 void USurvivalModeComponent::EndGame_Impl(const FText& Reason)
 {
-	GameEnded.Broadcast(this,Reason);
+	GameEnd.Broadcast(this,Reason);
 	Multicast_Sound(SurvivalDetails.GameEndSound);
 }
 
-void USurvivalModeComponent::SetSurvivalDetails(FSurvivalModeDetails Details)
+void USurvivalModeComponent::SetSurvivalDetails_Implementation(FSurvivalModeDetails Details)
 {
-	SetSurvivalDetails_Impl(Details);
+	SetSurvialDetails_Impl(Details);
 }
 
 void USurvivalModeComponent::SetSurvialDetails_Impl(FSurvivalModeDetails Details)
@@ -122,7 +122,7 @@ void USurvivalModeComponent::SetSurvialDetails_Impl(FSurvivalModeDetails Details
 	SurvivalDetails = Details;
 }
 
-void USurvivalModeComponent::EnemyDestroyed(AActor* Actor)
+void USurvivalModeComponent::EnemyDestroyed_Implementation(AActor* Actor)
 {
 	EnemyDestroyed_Impl(Actor);
 }
@@ -138,7 +138,7 @@ void USurvivalModeComponent::EnemyDestroyed_Impl(AActor* Actor)
 	}
 }
 
-void USurvivalModeComponent::HandleSpawnActor()
+void USurvivalModeComponent::HandleSpawnActor_Implementation()
 {
 	HandleSpawnActor_Impl();
 }
@@ -154,7 +154,7 @@ void USurvivalModeComponent::HandleSpawnActor_Impl()
 	if(CurrentSpawner.Name == NAME_None)
 	{
 		//If we have reached the end of our ActorsToSpawn, clear the spawner and start a new loop.
-		if(Spawners[0].ActorsToSpawn.Num<=0)
+		if(Spawners[0].ActorsToSpawn.Num()<=0)
 		{
 			Spawners.RemoveAt(0);
 			GetWorld()->GetTimerManager().SetTimer(SpawnHandle,this,&USurvivalModeComponent::HandleSpawnActor,CurrentSpawner.SpawnDelayTime,false);
@@ -181,7 +181,8 @@ void USurvivalModeComponent::HandleSpawnActor_Impl()
 		return;
 	}
 	//If the actor is a nullptr for whatever reason, try again.
-	if(!ISurvivalSpawnPointLink::Execute_RequestSpawnActor(Spawners[0].ActorsToSpawn[0].Class.LoadSynchrnous(),FTransform(),nullptr,nullptr))
+	if(!ISurvivalSpawnPointLink::Execute_RequestSpawnActor(actor, Spawners[0].ActorsToSpawn[0].Class.LoadSynchronous(),
+		actor->GetActorTransform(),nullptr,nullptr))
 	{
 		GetWorld()->GetTimerManager().SetTimer(SpawnHandle,this,&USurvivalModeComponent::HandleSpawnActor,CurrentSpawner.SpawnDelayTime,false);
 		UE_LOG(LogTemp,Warning,TEXT("Failed to spawn the actor. Retrying..."));
@@ -196,7 +197,7 @@ void USurvivalModeComponent::HandleSpawnActor_Impl()
 	}
 }
 
-void USurvivalModeComponent::Server_EnemyDestroyed(AActor* Actor)
+void USurvivalModeComponent::Server_EnemyDestroyed_Implementation(AActor* Actor)
 {
 	//Make sure the actor is actually in the array, then run the function.
 	if(!SpawnedActors.Contains(Actor))
@@ -211,59 +212,59 @@ bool USurvivalModeComponent::Server_EnemyDestroyed_Validate(AActor* Actor)
 	return SpawnedActors.Contains(Actor);
 }
 
-void USurvivalModeComponent::Server_SetSurvivalDetails(FSurvivalModeDetails Details)
+void USurvivalModeComponent::Server_SetSurvivalDetails_Implementation(FSurvivalModeDetails Details)
 {
 	SetSurvivalDetails(Details);
 }
 
 bool USurvivalModeComponent::Server_SetSurvivalDetails_Validate(FSurvivalModeDetails Details){return true;}
 
-void USurvivalModeComponent::Server_StartRound()
+void USurvivalModeComponent::Server_StartRound_Implementation()
 {
 	StartRound();
 }
 
-void USurvivalModeComponent::Server_StartRound_Validate()
+bool USurvivalModeComponent::Server_StartRound_Validate()
 {
 	return true;
 }
 
-void USurvivalModeComponent::Server_EndRound()
+void USurvivalModeComponent::Server_EndRound_Implementation()
 {
 	EndRound();
 }
 
-void USurvivalModeComponent::Server_EndRound_Validate()
+bool USurvivalModeComponent::Server_EndRound_Validate()
 {
 	return true;
 }
 
-void USurvivalModeComponent::Multicast_Sound(TSoftObjectPtr<USoundBase> Sound)
+void USurvivalModeComponent::Multicast_Sound_Implementation(const TSoftObjectPtr<USoundBase>& Sound)
 {
 	UGameplayStatics::PlaySound2D(this,Sound.LoadSynchronous(),1.f,1.f,0.f);
 }
 
-void USurvivalModeComponent::Server_StartGame()
+void USurvivalModeComponent::Server_StartGame_Implementation()
 {
 	StartGame();
 }
 
-void USurvivalModeComponent::Server_StartGame_Validate()
+bool USurvivalModeComponent::Server_StartGame_Validate()
 {
 	return true;
 }
 
-void USurvivalModeComponent::Server_EndGame(const FText& Reason)
+void USurvivalModeComponent::Server_EndGame_Implementation(const FText& Reason)
 {
 	EndGame(Reason);
 }
 
-void USurvivalModeComponent::Server_EndGame_Validate(const FText& Reason)
+bool USurvivalModeComponent::Server_EndGame_Validate(const FText& Reason)
 {
 	return true;
 }
 
-TArray<FSurvivalModeSpawner> FindSpawnersForRound()
+TArray<FSurvivalModeSpawner> USurvivalModeComponent::FindSpawnersForRound_Implementation()
 {
 	//Iterate through our default and boss spawners, call the built in function and add the valid spawners to the array.
 	TArray<FSurvivalModeSpawner> spawners;
@@ -276,9 +277,9 @@ TArray<FSurvivalModeSpawner> FindSpawnersForRound()
 	}
 	for(auto& spawner2 : SurvivalDetails.BossSpawners)
 	{
-		if(spawner.ValidForRound(SurvivalDetails.GetCurrentRound()))
+		if(spawner2.ValidForRound(SurvivalDetails.GetCurrentRound()))
 		{
-			spawners.Add(spawner);
+			spawners.Add(spawner2);
 		}
 	}
 	return spawners;

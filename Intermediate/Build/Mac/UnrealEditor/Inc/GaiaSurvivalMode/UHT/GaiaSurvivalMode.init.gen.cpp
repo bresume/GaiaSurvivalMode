@@ -29,7 +29,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalMode_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xA90D8C0C,
+				0xDC19A4CD,
 				0x7190FC3E,
 				METADATA_PARAMS(nullptr, 0)
 			};
@@ -37,5 +37,5 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalMode_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_GaiaSurvivalMode.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_GaiaSurvivalMode(Z_Construct_UPackage__Script_GaiaSurvivalMode, TEXT("/Script/GaiaSurvivalMode"), Z_Registration_Info_UPackage__Script_GaiaSurvivalMode, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xA90D8C0C, 0x7190FC3E));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_GaiaSurvivalMode(Z_Construct_UPackage__Script_GaiaSurvivalMode, TEXT("/Script/GaiaSurvivalMode"), Z_Registration_Info_UPackage__Script_GaiaSurvivalMode, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xDC19A4CD, 0x7190FC3E));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

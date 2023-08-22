@@ -28,7 +28,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		P_GET_STRUCT(FSurvivalModeDetails,Z_Param_A);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(bool*)Z_Param__Result=P_THIS->IsBossRound(Z_Param_A);
+		*(bool*)Z_Param__Result=UGaiaSurvivalFunctions::IsBossRound(Z_Param_A);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UGaiaSurvivalFunctions::execUseRound)
@@ -37,7 +37,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		P_GET_PROPERTY(FIntProperty,Z_Param_CurrentRound);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(bool*)Z_Param__Result=P_THIS->UseRound(Z_Param_A,Z_Param_CurrentRound);
+		*(bool*)Z_Param__Result=UGaiaSurvivalFunctions::UseRound(Z_Param_A,Z_Param_CurrentRound);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UGaiaSurvivalFunctions::execIgnoreRound)
@@ -46,7 +46,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		P_GET_PROPERTY(FIntProperty,Z_Param_CurrentRound);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(bool*)Z_Param__Result=P_THIS->IgnoreRound(Z_Param_A,Z_Param_CurrentRound);
+		*(bool*)Z_Param__Result=UGaiaSurvivalFunctions::IgnoreRound(Z_Param_A,Z_Param_CurrentRound);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UGaiaSurvivalFunctions::execCompleteRound)
@@ -54,7 +54,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		P_GET_STRUCT(FSurvivalModeDetails,Z_Param_A);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(bool*)Z_Param__Result=P_THIS->CompleteRound(Z_Param_A);
+		*(bool*)Z_Param__Result=UGaiaSurvivalFunctions::CompleteRound(Z_Param_A);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UGaiaSurvivalFunctions::execGetCurrentRound)
@@ -62,7 +62,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		P_GET_STRUCT(FSurvivalModeDetails,Z_Param_A);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(int32*)Z_Param__Result=P_THIS->GetCurrentRound(Z_Param_A);
+		*(int32*)Z_Param__Result=UGaiaSurvivalFunctions::GetCurrentRound(Z_Param_A);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UGaiaSurvivalFunctions::execFindNextAvailableSpawner)
@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		P_GET_OBJECT_REF(AActor,Z_Param_Out_Value);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(bool*)Z_Param__Result=P_THIS->FindNextAvailableSpawner(Z_Param_Actors,Z_Param_Out_Value);
+		*(bool*)Z_Param__Result=UGaiaSurvivalFunctions::FindNextAvailableSpawner(Z_Param_Actors,Z_Param_Out_Value);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UGaiaSurvivalFunctions::execGetSpawnersWithTags)
@@ -81,7 +81,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		P_GET_TARRAY_REF(AActor*,Z_Param_Out_OutActors);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(bool*)Z_Param__Result=P_THIS->GetSpawnersWithTags(Z_Param_WorldContextObject,Z_Param_Tags,Z_Param_Out_OutActors);
+		*(bool*)Z_Param__Result=UGaiaSurvivalFunctions::GetSpawnersWithTags(Z_Param_WorldContextObject,Z_Param_Tags,Z_Param_Out_OutActors);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UGaiaSurvivalFunctions::execIsClassAllowedForSpawner)
@@ -90,7 +90,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		P_GET_OBJECT(UClass,Z_Param_Class);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(bool*)Z_Param__Result=P_THIS->IsClassAllowedForSpawner(Z_Param_A,Z_Param_Class);
+		*(bool*)Z_Param__Result=UGaiaSurvivalFunctions::IsClassAllowedForSpawner(Z_Param_A,Z_Param_Class);
 		P_NATIVE_END;
 	}
 	void UGaiaSurvivalFunctions::StaticRegisterNativesUGaiaSurvivalFunctions()
@@ -143,7 +143,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		{ "WorldContext", "WorldContextObject" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "CompleteRound", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::GaiaSurvivalFunctions_eventCompleteRound_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "CompleteRound", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::GaiaSurvivalFunctions_eventCompleteRound_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14022401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -195,7 +195,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		{ "WorldContext", "WorldContextObject" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "FindNextAvailableSpawner", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::GaiaSurvivalFunctions_eventFindNextAvailableSpawner_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "FindNextAvailableSpawner", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::GaiaSurvivalFunctions_eventFindNextAvailableSpawner_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -235,7 +235,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		{ "ToolTip", "Get the current round from the details." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "GetCurrentRound", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::GaiaSurvivalFunctions_eventGetCurrentRound_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "GetCurrentRound", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::GaiaSurvivalFunctions_eventGetCurrentRound_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14022401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -294,7 +294,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		{ "WorldContext", "WorldContextObject" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "GetSpawnersWithTags", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::GaiaSurvivalFunctions_eventGetSpawnersWithTags_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14420401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "GetSpawnersWithTags", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::GaiaSurvivalFunctions_eventGetSpawnersWithTags_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -343,7 +343,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		{ "WorldContext", "WorldContextObject" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "IgnoreRound", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::GaiaSurvivalFunctions_eventIgnoreRound_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "IgnoreRound", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::GaiaSurvivalFunctions_eventIgnoreRound_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14022401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -388,7 +388,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		{ "WorldContext", "WorldContextObject" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "IsBossRound", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::GaiaSurvivalFunctions_eventIsBossRound_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "IsBossRound", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::GaiaSurvivalFunctions_eventIsBossRound_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14022401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -437,7 +437,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		{ "ToolTip", "Determines if the spawn point allows spawn." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "IsClassAllowedForSpawner", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::GaiaSurvivalFunctions_eventIsClassAllowedForSpawner_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "IsClassAllowedForSpawner", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::GaiaSurvivalFunctions_eventIsClassAllowedForSpawner_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14022401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -486,7 +486,7 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		{ "WorldContext", "WorldContextObject" },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "UseRound", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::GaiaSurvivalFunctions_eventUseRound_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UGaiaSurvivalFunctions, nullptr, "UseRound", nullptr, nullptr, sizeof(Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::GaiaSurvivalFunctions_eventUseRound_Parms), Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14022401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -516,14 +516,14 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_GaiaSurvivalMode,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UGaiaSurvivalFunctions_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound, "CompleteRound" }, // 111291990
-		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner, "FindNextAvailableSpawner" }, // 1344809925
-		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound, "GetCurrentRound" }, // 3653091915
-		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags, "GetSpawnersWithTags" }, // 3246062298
-		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound, "IgnoreRound" }, // 2228318295
-		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound, "IsBossRound" }, // 1160165024
-		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner, "IsClassAllowedForSpawner" }, // 1497318678
-		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound, "UseRound" }, // 1613582280
+		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_CompleteRound, "CompleteRound" }, // 3100173267
+		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_FindNextAvailableSpawner, "FindNextAvailableSpawner" }, // 430129967
+		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_GetCurrentRound, "GetCurrentRound" }, // 1460489257
+		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_GetSpawnersWithTags, "GetSpawnersWithTags" }, // 3817467929
+		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_IgnoreRound, "IgnoreRound" }, // 2131913907
+		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_IsBossRound, "IsBossRound" }, // 115753352
+		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_IsClassAllowedForSpawner, "IsClassAllowedForSpawner" }, // 2477233136
+		{ &Z_Construct_UFunction_UGaiaSurvivalFunctions_UseRound, "UseRound" }, // 399875101
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UGaiaSurvivalFunctions_Statics::Class_MetaDataParams[] = {
@@ -571,9 +571,9 @@ void EmptyLinkFunctionForGeneratedCodeGaiaSurvivalFunctions() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_GaiaSurvivalFunctions_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UGaiaSurvivalFunctions, UGaiaSurvivalFunctions::StaticClass, TEXT("UGaiaSurvivalFunctions"), &Z_Registration_Info_UClass_UGaiaSurvivalFunctions, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGaiaSurvivalFunctions), 3804716885U) },
+		{ Z_Construct_UClass_UGaiaSurvivalFunctions, UGaiaSurvivalFunctions::StaticClass, TEXT("UGaiaSurvivalFunctions"), &Z_Registration_Info_UClass_UGaiaSurvivalFunctions, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGaiaSurvivalFunctions), 3969835486U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_GaiaSurvivalFunctions_h_2872934226(TEXT("/Script/GaiaSurvivalMode"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_GaiaSurvivalFunctions_h_486715942(TEXT("/Script/GaiaSurvivalMode"),
 		Z_CompiledInDeferFile_FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_GaiaSurvivalFunctions_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_bhramamobile_wkspaces_dungeon_destroyers_ue5_Plugins_GaiaSurvivalMode_Source_GaiaSurvivalMode_Public_Core_GaiaSurvivalFunctions_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
