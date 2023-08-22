@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "GaiaSurvivalMode",
+	"Description": "A plugin designed to deliver a fast and flexible survival game mode (horde mode) to your game with a click of a button!",
+	"Category": "GaiaPlugins",
+	"CreatedBy": "Gaia Publications Inc.",
+	"CreatedByURL": "https://www.gaiapublications.com",
+	"DocsURL": "https://www.gaiapublications.com/gaia-survival-mode",
+	"MarketplaceURL": "",
+	"SupportURL": "https://www.gaiapublications.com/contact",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "GaiaSurvivalMode",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
